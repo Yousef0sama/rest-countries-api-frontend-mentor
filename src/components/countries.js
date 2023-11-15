@@ -22,7 +22,8 @@ export default function Countries() {
 
     const newArr = region === "All" ? Countries.countries : Countries.countries.filter((e) => {return e.region == region});
 
-    setRegionArr(newArr)
+    setRegionArr(newArr);
+    setArr(newArr);
 
   }, [region]);
 
@@ -30,7 +31,7 @@ export default function Countries() {
 
     const newArr = search === "" ? regionArr : regionArr.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
 
-    setArr(newArr)
+    setArr(newArr);
 
   }, [search]);
 
