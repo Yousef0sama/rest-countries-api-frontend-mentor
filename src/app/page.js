@@ -11,7 +11,9 @@ import Countries from "@/components/countries";
 import Country from "@/components/country";
 
 // helpers
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
+import Axios from "axios";
+import MoonLoader from "react-spinners/MoonLoader";
 
 export const MODE = createContext();
 export const COUNTRY = createContext();
@@ -20,22 +22,54 @@ export default function Home() {
 
   const [mode, setMode] = useState("light");
   const [country, setCountry] = useState("none");
+  const [countries, setCountries] = useState(null);
+
+  useEffect(() => {
+
+    Axios.get("./json/data.json").then(
+      (res) => {
+        setInterval(() => {
+          setCountries(res.data);
+        }, 5000)
+      }
+    )
+
+  }, [])
 
   return (
-    <div className={`container-fluid ${mode}`}>
+    <>
+      {
+        countries ?
 
-      <MODE.Provider value={{mode, setMode}}>
-        <Header />
-      </MODE.Provider>
+        <div className={`container-fluid ${mode}`}>
 
-      <COUNTRY.Provider value={{country, setCountry}}>
+          <MODE.Provider value={{mode, setMode}}>
+          <Header />
+          </MODE.Provider>
 
-        {
-          country === "none" ? <Countries /> : <Country />
-        }
 
-      </COUNTRY.Provider>
+          <COUNTRY.Provider value={{country, setCountry, countries, setCountries}}>
 
-    </div>
+          {
+            country === "none" ? <Countries /> : <Country />
+          }
+
+          </COUNTRY.Provider>
+
+        </div>
+
+        :
+
+        <MoonLoader
+          cssOverride={{
+            display:"block",
+            margin:"43vh auto"
+          }}
+          color="rgb(0, 93, 255)"
+        />
+
+      }
+
+    </>
   )
 }

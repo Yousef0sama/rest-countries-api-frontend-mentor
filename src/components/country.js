@@ -8,14 +8,13 @@ import { COUNTRY } from "@/app/page"
 export default function Country() {
 
   const Countries = useContext(COUNTRY);
-  const countries = require("@/json/data.json");
-  const country = countries.filter(
+  const country = Countries.countries.filter(
     (e) => {
       return e.name == Countries.country
     }
   )[0];
 
-  const bordersOBJ = countries.filter(
+  const bordersOBJ = Countries.countries.filter(
     (e) => {
       return country.borders.includes(e.alpha3Code);
     }

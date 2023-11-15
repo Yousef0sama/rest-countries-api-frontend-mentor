@@ -9,18 +9,17 @@ import { SetRegion } from "@/functions/functions";
 export default function Countries() {
 
   const Countries = useContext(COUNTRY);
-  const countries = require("@/json/data.json");
 
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("All");
   const [list, setList] = useState("close");
-  const [arr, setArr] = useState(countries);
+  const [arr, setArr] = useState(Countries.countries);
 
   const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   useEffect(() => {
 
-    const newArr = region === "All" ? countries : countries.filter((e) => {return e.region == region});
+    const newArr = region === "All" ? Countries.countries : Countries.countries.filter((e) => {return e.region == region});
 
     setArr(newArr)
 
@@ -28,7 +27,7 @@ export default function Countries() {
 
   useEffect(() => {
 
-    const newArr = search === "" ? countries : countries.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
+    const newArr = search === "" ? Countries.countries : Countries.countries.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
 
     setArr(newArr)
 
