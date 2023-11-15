@@ -14,7 +14,7 @@ export default function Countries() {
   const [region, setRegion] = useState("All");
   const [list, setList] = useState("close");
   const [regionArr, setRegionArr] = useState(Countries.countries);
-  const [arr, setArr] = useState(regionArr);
+  const [arr, setArr] = useState([]);
 
   const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
