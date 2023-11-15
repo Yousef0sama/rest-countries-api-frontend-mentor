@@ -30,7 +30,7 @@ export default function Home() {
       (res) => {
         setInterval(() => {
           setCountries(res.data);
-        }, 5000)
+        }, 3000)
       }
     )
 

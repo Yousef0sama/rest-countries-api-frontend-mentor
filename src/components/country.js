@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import { COUNTRY } from "@/app/page"
 
@@ -14,17 +14,29 @@ export default function Country() {
     }
   )[0];
 
-  const bordersOBJ = Countries.countries.filter(
-    (e) => {
-      return country.borders.includes(e.alpha3Code);
-    }
-  );
+  const [borders, setBorders] = useState([]);
 
-  const borders = bordersOBJ.map(
-    (e) => {
-      return e.name;
+  useEffect (() => {
+
+    if (country.borders != null) {
+
+      const bordersOBJ = Countries.countries.filter(
+        (e) => {
+          return country.borders.includes(e.alpha3Code);
+        }
+      );
+  
+      const borders = bordersOBJ.map(
+        (e) => {
+          return e.name;
+        }
+      )
+
+      setBorders(borders)
+
     }
-  )
+
+  }, []);
 
   return (
     <div className="row country">
