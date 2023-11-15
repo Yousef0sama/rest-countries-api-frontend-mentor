@@ -76,7 +76,7 @@ export default function Country() {
                   country.currencies.map(
                     ({code}, i) => {
                       return(
-                        <span> { i + 1 < country.currencies.length ? ` ${code},` : ` ${code}` } </span>
+                        <span key={code}> { i + 1 < country.currencies.length ? ` ${code},` : ` ${code}` } </span>
                       )
                     }
                   )
@@ -88,7 +88,7 @@ export default function Country() {
                   country.languages.map(
                     ({name}, i) => {
                       return(
-                        <span> {i + 1 < country.languages.length ? ` ${name},` : ` ${name}`} </span>
+                        <span key={name}> {i + 1 < country.languages.length ? ` ${name},` : ` ${name}`} </span>
                       )
                     }
                   )
