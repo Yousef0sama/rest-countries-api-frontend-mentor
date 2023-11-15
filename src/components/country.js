@@ -103,7 +103,7 @@ export default function Country() {
                     borders.map(
                       (border) => {
                         return(
-                          <span className="col col-md-4 col-6">
+                          <span key={border} className="col col-md-4 col-6">
                             <span className="element"> {border} </span>
                           </span>
                         )
