@@ -27,7 +27,7 @@ export default function Countries() {
 
   useEffect(() => {
 
-    const newArr = search === "" ? arr : arr.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
+    const newArr = search === "" ? Countries.countries.filter((e) => {return e.region == region}) : arr.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
 
     setArr(newArr)
 
