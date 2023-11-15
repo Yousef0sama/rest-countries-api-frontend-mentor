@@ -13,7 +13,8 @@ export default function Countries() {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("All");
   const [list, setList] = useState("close");
-  const [arr, setArr] = useState(Countries.countries);
+  const [regionArr, setRegionArr] = useState(Countries.countries);
+  const [arr, setArr] = useState(regionArr);
 
   const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -21,13 +22,13 @@ export default function Countries() {
 
     const newArr = region === "All" ? Countries.countries : Countries.countries.filter((e) => {return e.region == region});
 
-    setArr(newArr)
+    setRegionArr(newArr)
 
   }, [region]);
 
   useEffect(() => {
 
-    const newArr = search === "" ? Countries.countries.filter((e) => {return e.region == region}) : arr.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
+    const newArr = search === "" ? regionArr : regionArr.filter((e) => {return e.name.toLowerCase().includes(search.toLowerCase())});
 
     setArr(newArr)
 
